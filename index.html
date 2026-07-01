@@ -1,59 +1,160 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ada Soalan Kejap... 🌹</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #ffe6e6;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      text-align: center;
-    }
-    h1 { color: #ff4d4d; font-size: 24px; margin-bottom: 20px; padding: 0 10px; }
-    .buttons { display: flex; gap: 20px; align-items: center; justify-content: center; flex-direction: column; }
-    button {
-      padding: 12px 30px;
-      font-size: 18px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      width: 200px;
-    }
-    #yesBtn { background-color: #ff4d4d; color: white; font-weight: bold; }
-    #noBtn { background-color: #ccc; color: #333; }
-    .gif { font-size: 60px; margin-bottom: 10px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lock It In Bestie!</title>
+    <style>
+        body { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            background-color: #fff9f9; 
+            font-family: sans-serif; 
+            margin: 0; 
+            overflow: hidden; 
+            text-align: center; 
+        }
+        .page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            transition: all 0.5s ease;
+        }
+        .hidden {
+            display: none !important;
+        }
+        h1 { 
+            color: #d63384; 
+            font-size: 2rem; 
+            margin-bottom: 30px; 
+            padding: 0 20px; 
+        }
+        .btn-container { 
+            position: relative; 
+            width: 100%; 
+            height: 200px; 
+        }
+        button { 
+            padding: 15px 35px; 
+            font-size: 1.2rem; 
+            border: none; 
+            border-radius: 30px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            transition: all 0.15s ease; 
+        }
+        #yesBtn, #submitBtn { 
+            background-color: #d63384; 
+            color: white; 
+        }
+        #yesBtn {
+            position: absolute;
+            left: calc(50% - 130px); 
+            top: 50px;
+        }
+        #noBtn { 
+            background-color: #f8d7da; 
+            color: #721c24; 
+            position: absolute;
+            left: calc(50% + 20px); 
+            top: 50px;
+            touch-action: none; 
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            width: 85%;
+            max-width: 400px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+            color: #555;
+            display: block;
+            margin-bottom: 8px;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #f8d7da;
+            border-radius: 10px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            background-color: #fffbfb;
+        }
+        #submitBtn {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-  <div class="gif">🌹✨</div>
-  <h1 id="question">Awak free tak 4/7/2026 ni? Jom lepak! 🚀</h1>
-  
-  <div class="buttons">
-    <button id="yesBtn" onclick="tandaSetuju()">Mesti lah nak! 😍</button>
-    <button id="noBtn" onclick="merajuk()">Tak nak 😜</button>
-  </div>
 
-  <script>
-    let yesSize = 18;
-    function merajuk() {
-      alert("Eh mana boleh tak nak! Cuba tekan butang merah tu balik 😜");
-      yesSize += 10;
-      document.getElementById('yesBtn').style.fontSize = yesSize + 'px';
-      document.getElementById('yesBtn').style.width = (200 + yesSize*2) + 'px';
-    }
-    function tandaSetuju() {
-      document.getElementById('question').innerHTML = "Yeayyy! Nanti kita set masa okay? Jumpa 4/7/2026! ❤️🌹";
-      document.querySelector('.buttons').style.display = 'none';
-      document.querySelector('.gif').innerHTML = "🥰🎉";
-    }
-  </script>
+    <!-- SKRIN 1: AJAK DATE -->
+    <div id="page1" class="page">
+        <h1>Will you go on a date with me? 🌹</h1>
+        <div class="btn-container">
+            <button id="yesBtn" onclick="nextPage()">Yes ✨</button>
+            <button id="noBtn" onmouseover="lari()" ontouchstart="lari(event)">No</button>
+        </div>
+    </div>
+
+    <!-- SKRIN 2: PILIH MASA -->
+    <div id="page2" class="page hidden">
+        <div class="card">
+            <h1 style="font-size: 1.8rem; margin-top: 0;">So... when are you free? 🗓️</h1>
+            
+            <div class="form-group">
+                <label>Pick a Day ✨</label>
+                <input type="date" id="dateInput" value="2026-07-04" min="2026-07-04" max="2026-07-04">
+            </div>
+
+            <div class="form-group">
+                <label>What Time? 😉</label>
+                <select id="timeInput">
+                    <option value="7:00 PM 🍽️ - Dinner Time">7:00 PM 🍽️ - Dinner Time</option>
+                    <option value="8:00 PM 🎬 - Movie / Chill">8:00 PM 🎬 - Movie / Chill</option>
+                    <option value="9:00 PM 🌙 - Late Night Coffee">9:00 PM 🌙 - Late Night Coffee</option>
+                </select>
+            </div>
+
+            <button id="submitBtn" onclick="hantarWhatsApp()">Lock It In Bestie 📌</button>
+        </div>
+    </div>
+
+    <script>
+        function lari(e) {
+            if (e) e.preventDefault();
+            const noBtn = document.getElementById('noBtn');
+            const padding = 60;
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding * 2) + padding;
+            noBtn.style.left = x + 'px'; 
+            noBtn.style.top = y + 'px';
+        }
+
+        function nextPage() {
+            document.getElementById('page1').classList.add('hidden');
+            document.getElementById('page2').classList.remove('hidden');
+        }
+
+        function hantarWhatsApp() {
+            const tarikh = "04/07/2026";
+            const masa = document.getElementById('timeInput').value;
+            const ayat = `I say YES! ❤️%0A%0A🗓️ Tarikh: ${tarikh}%0A⏰ Masa: ${masa}%0A%0ASee you there! ✨`;
+            window.location.href = `https://wa.me/601112427146?text=${ayat}`;
+        }
+    </script>
+
 </body>
 </html>

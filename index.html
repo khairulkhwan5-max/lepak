@@ -72,8 +72,10 @@
         function hantarWhatsApp() {
             const tarikh = document.getElementById('dateInput').value;
             const masa = document.getElementById('timeInput').value;
-            const ayat = `I say YES! ❤️%0A%0A🗓️ Tarikh: ${tarikh}%0A⏰ Masa: ${masa}%0A%0ASee you there! ✨`;
-            window.location.href = `https://wa.me/601112427146?text=${ayat}`;
+            const ayat = "I say YES! ❤️\n\n🗓️ Tarikh: " + tarikh + "\n⏰ Masa: " + masa + "\n\nSee you there! ✨";
+            
+            const encodedAyat = encodeURIComponent(ayat);
+            window.location.href = `https://wa.me/601112427146?text=${encodedAyat}`;
         }
     </script>
 </body>

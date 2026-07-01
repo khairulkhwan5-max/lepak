@@ -3,90 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lock It In Bestie!</title>
+    <title>For Najwa ❤️</title>
     <style>
-        body { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #fff9f9; font-family: sans-serif; margin: 0; overflow: hidden; text-align: center; }
-        .page { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; transition: all 0.5s ease; }
-        .hidden { display: none !important; }
-        h1 { color: #d63384; font-size: 1.5rem; margin-bottom: 20px; padding: 0 20px; }
-        .btn-container { position: relative; width: 100%; height: 200px; }
-        button { padding: 15px 30px; font-size: 1.1rem; border: none; border-radius: 30px; cursor: pointer; font-weight: bold; transition: all 0.15s ease; }
-        #yesBtn, #submitBtn, #okBtn { background-color: #d63384; color: white; }
-        #yesBtn { position: absolute; left: calc(50% - 120px); top: 50px; z-index: 10; }
-        #noBtn { background-color: #f8d7da; color: #721c24; position: absolute; left: calc(50% + 20px); top: 50px; touch-action: none; z-index: 10; }
-        .card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 85%; max-width: 350px; }
-        input, select { width: 100%; padding: 12px; border: 2px solid #f8d7da; border-radius: 10px; font-size: 1rem; margin-top: 5px; margin-bottom: 15px; box-sizing: border-box; }
-        #okBtn { width: 100%; margin-top: 20px; }
-        
-        /* Animasi Bunga Jatuh */
-        .flower { position: absolute; top: -20px; font-size: 20px; animation: fall linear infinite; z-index: 1; }
-        @keyframes fall { to { transform: translateY(100vh); } }
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #fafafa;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .cute-gif {
+            width: 220px;
+            height: auto;
+            display: block;
+            margin: 0 auto 15px auto;
+        }
+
+        h1 {
+            color: #d1217e;
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 1.4;
+            margin-bottom: 30px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            height: 50px;
+            position: relative;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+
+        .btn-yes {
+            background-color: #d1217e;
+            color: white;
+        }
+
+        .btn-no {
+            background-color: #fce8f3;
+            color: #d1217e;
+            position: absolute; /* Ni yang buat dia boleh gerak */
+        }
     </style>
 </head>
 <body>
 
-    <div id="page1" class="page">
-        <h1>Najwa, I really enjoy talking to you. Would you let me take you out on a date? 🌹</h1>
+    <div class="container">
+        <img src="https://media.tenor.com/w062e4jI5D0vO8P40u/milk-and-mocha.gif" alt="Cute Bear Animation" class="cute-gif">
+
+        <h1>Najwa, I really enjoy talking to you.<br>Would you let me take you out on a date? 🌹</h1>
+
         <div class="btn-container">
-            <button id="yesBtn" onclick="nextPage(2)">Yes ✨</button>
-            <button id="noBtn" onmouseover="lari()" ontouchstart="lari(event)">No</button>
+            <!-- Bila tekan Yes, dia terus pergi WhatsApp awak -->
+            <button class="btn btn-yes" onclick="window.location.href='https://wa.me/601XXXXXXXXXX'">Yes ✨</button>
+            <button class="btn btn-no" id="no-btn">No</button>
         </div>
-    </div>
-
-    <div id="page2" class="page hidden">
-        <div class="card">
-            <h1>So... when are you free? 🗓️</h1>
-            <label>Pick a Date ✨</label>
-            <input type="date" id="dateInput" value="2026-07-04" min="2026-07-04">
-            <label>What Time? 😉</label>
-            <select id="timeInput">
-                <option value="" disabled selected>Pilih waktu...</option>
-                <option value="7:00 PM">7:00 PM</option>
-                <option value="8:00 PM">8:00 PM</option>
-                <option value="9:00 PM">9:00 PM</option>
-            </select>
-            <button id="submitBtn" onclick="nextPage(3)" style="width: 100%;">Lock It In Cutie 📌</button>
-        </div>
-    </div>
-
-    <div id="page3" class="page hidden">
-        <h1 style="color: #d63384;">Jangan last minit cancel tau 🥺</h1>
-        <button id="okBtn" onclick="hantarWhatsApp()">okiesss</button>
     </div>
 
     <script>
-        function lari(e) {
-            if (e) e.preventDefault();
-            const noBtn = document.getElementById('noBtn');
-            noBtn.style.left = Math.max(20, Math.random() * (window.innerWidth - 100)) + 'px';
-            noBtn.style.top = Math.max(20, Math.random() * (window.innerHeight - 100)) + 'px';
-        }
+        const noBtn = document.getElementById('no-btn');
 
-        function nextPage(n) {
-            if (n === 3 && document.getElementById('timeInput').value === "") { alert("Pilih waktu dulu!"); return; }
-            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-            document.getElementById('page' + n).classList.remove('hidden');
-            if (n === 3) startFlowers();
-        }
-
-        function startFlowers() {
-            setInterval(() => {
-                const f = document.createElement('div');
-                f.innerHTML = '🌸';
-                f.className = 'flower';
-                f.style.left = Math.random() * 100 + 'vw';
-                f.style.animationDuration = Math.random() * 3 + 2 + 's';
-                document.body.appendChild(f);
-                setTimeout(() => f.remove(), 5000);
-            }, 300);
-        }
-
-        function hantarWhatsApp() {
-            const tarikh = document.getElementById('dateInput').value;
-            const masa = document.getElementById('timeInput').value;
-            const ayat = `I say YES!%0A%0ATarikh: ${tarikh}%0AMasa: ${masa}%0A%0ASee you there!`;
-            window.location.href = `https://wa.me/601112427146?text=${ayat}`;
-        }
+        // Fungsi butang No lari-lari
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 100);
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+            noBtn.style.position = 'fixed';
+        });
     </script>
 </body>
 </html>

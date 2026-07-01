@@ -103,7 +103,7 @@
 </head>
 <body>
 
-    <!-- SKRIN 1: AJAK DATE (AYAT BARU) -->
+    <!-- SKRIN 1: AJAK DATE -->
     <div id="page1" class="page">
         <h1>Najwa, I really enjoy talking to you. Would you let me take you out on a date? 🌹</h1>
         <div class="btn-container">
@@ -112,10 +112,10 @@
         </div>
     </div>
 
-    <!-- SKRIN 2: PILIH MASA (PILIHAN RINGKAS) -->
+    <!-- SKRIN 2: PILIH MASA -->
     <div id="page2" class="page hidden">
         <div class="card">
-            <h1 style="font-size: 1.8rem; margin-top: 0; padding: 0;">So... when are you free? 🗓️</h1>
+            <h1 style="font-size: 1.8rem; margin-top: 0; padding: 0;">So... when are you free? Please pilih sabtu ni 🗓️</h1>
             
             <div class="form-group">
                 <label>Pick a Day ✨</label>
@@ -131,7 +131,7 @@
                 </select>
             </div>
 
-            <button id="submitBtn" onclick="hantarWhatsApp()">Lock It In Bestie 📌</button>
+            <button id="submitBtn" onclick="hantarWhatsApp()">Lock It In Cutie 📌</button>
         </div>
     </div>
 
@@ -139,16 +139,11 @@
         function lari(e) {
             if (e) e.preventDefault();
             const noBtn = document.getElementById('noBtn');
-            
-            // Memastikan butang sentiasa melompat di dalam kawasan skrin yang boleh dilihat sahaja
             const padding = 30;
             const maxX = window.innerWidth - noBtn.offsetWidth - padding;
             const maxY = window.innerHeight - noBtn.offsetHeight - padding;
-            
-            // Minimum 20px supaya tidak tersuruk ke bahagian atas/tepi skrin sangat
             const x = Math.max(20, Math.random() * maxX);
             const y = Math.max(20, Math.random() * maxY);
-            
             noBtn.style.left = x + 'px'; 
             noBtn.style.top = y + 'px';
         }

@@ -14,13 +14,14 @@
         #yesBtn, #submitBtn, #okBtn { background-color: #d63384; color: white; }
         #yesBtn { position: absolute; left: calc(50% - 120px); top: 50px; z-index: 10; }
         #noBtn { background-color: #f8d7da; color: #721c24; position: absolute; left: calc(50% + 20px); top: 50px; touch-action: none; z-index: 10; }
-        .card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 85%; max-width: 350px; }
-        select { width: 100%; padding: 12px; border: 2px solid #f8d7da; border-radius: 10px; font-size: 1rem; margin-top: 10px; }
-        #okBtn { width: 100%; margin-top: 20px; padding: 15px; }
+        .card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 85%; max-width: 350px; text-align: left; }
+        input, select { width: 100%; padding: 12px; border: 2px solid #f8d7da; border-radius: 10px; font-size: 1rem; margin-top: 5px; margin-bottom: 15px; box-sizing: border-box; }
+        #submitBtn, #okBtn { width: 100%; margin-top: 10px; }
     </style>
 </head>
 <body>
 
+    <!-- SKRIN 1 -->
     <div id="page1" class="page">
         <h1>Najwa, I really enjoy talking to you. Would you let me take you out on a date? 🌹</h1>
         <div class="btn-container">
@@ -29,21 +30,26 @@
         </div>
     </div>
 
+    <!-- SKRIN 2 -->
     <div id="page2" class="page hidden">
         <div class="card">
-            <h1>So... when are you free? 🗓️</h1>
+            <h1 style="font-size: 1.3rem; text-align: center;">So... when are you free? Please pilih sabtu ni 🗓️</h1>
+            <label>Pick a Date ✨</label>
+            <input type="date" id="dateInput" value="2026-07-04" min="2026-07-04">
+            
             <label>What Time? 😉</label>
             <select id="timeInput">
                 <option value="7:00 PM">7:00 PM</option>
                 <option value="8:00 PM">8:00 PM</option>
                 <option value="9:00 PM">9:00 PM</option>
             </select>
-            <button id="submitBtn" onclick="nextPage(3)" style="width: 100%; margin-top: 20px;">Lock It In Cutie 📌</button>
+            <button id="submitBtn" onclick="nextPage(3)">Lock It In Cutie 📌</button>
         </div>
     </div>
 
+    <!-- SKRIN 3 -->
     <div id="page3" class="page hidden">
-        <div class="card" style="background-color: #d4af37; color: white;">
+        <div class="card" style="background-color: #d4af37; color: white; text-align: center;">
             <h1 style="color: white;">Jangan last minit cancel tau 🥺</h1>
             <button id="okBtn" onclick="hantarWhatsApp()">[okiesss]</button>
         </div>
@@ -64,8 +70,9 @@
         }
 
         function hantarWhatsApp() {
+            const tarikh = document.getElementById('dateInput').value;
             const masa = document.getElementById('timeInput').value;
-            const ayat = `I say YES! ❤️%0A%0A⏰ Masa: ${masa}%0A%0ASee you there! ✨`;
+            const ayat = `I say YES! ❤️%0A%0A🗓️ Tarikh: ${tarikh}%0A⏰ Masa: ${masa}%0A%0ASee you there! ✨`;
             window.location.href = `https://wa.me/601112427146?text=${ayat}`;
         }
     </script>

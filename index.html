@@ -17,9 +17,13 @@
         .card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 85%; max-width: 350px; }
         input, select { width: 100%; padding: 12px; border: 2px solid #f8d7da; border-radius: 10px; font-size: 1rem; margin-top: 5px; margin-bottom: 15px; box-sizing: border-box; }
         #okBtn { width: 100%; margin-top: 20px; }
+
+        /* Style Bunga/Emoji Jatuh */
+        .falling-item { position: absolute; top: -50px; font-size: 24px; animation: fall linear infinite; pointer-events: none; z-index: 999; }
+        @keyframes fall { to { transform: translateY(110vh); } }
     </style>
 </head>
-<body>
+<body onload="startFalling('✨❤️', 500)">
 
     <div id="page1" class="page">
         <h1>Najwa, I really enjoy talking to you. Would you let me take you out on a date? 🌹</h1>
@@ -62,12 +66,26 @@
             if (n === 3 && document.getElementById('timeInput').value === "") { alert("Pilih waktu dulu!"); return; }
             document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
             document.getElementById('page' + n).classList.remove('hidden');
+            if (n === 3) startFalling('🌸', 150);
+        }
+
+        function startFalling(items, speed) {
+            setInterval(() => {
+                const f = document.createElement('div');
+                f.innerHTML = items.charAt(Math.floor(Math.random() * items.length));
+                f.className = 'falling-item';
+                f.style.left = Math.random() * 100 + 'vw';
+                f.style.animationDuration = Math.random() * 2 + 3 + 's';
+                document.body.appendChild(f);
+                setTimeout(() => f.remove(), 6000);
+            }, speed); 
         }
 
         function hantarWhatsApp() {
             const tarikh = document.getElementById('dateInput').value;
             const masa = document.getElementById('timeInput').value;
-            const ayat = `I say YES!%0A%0ATarikh: ${tarikh}%0AMasa: ${masa}%0A%0ASee you there!`;
+            // Di sini saya dah tukar kepada teks "I say YES! <3" sahaja
+            const ayat = `I say YES! <3%0A%0ATarikh: ${tarikh}%0AMasa: ${masa}%0A%0ASee you there!`;
             window.location.href = `https://wa.me/601112427146?text=${ayat}`;
         }
     </script>

@@ -19,38 +19,38 @@
         #okBtn { width: 100%; margin-top: 20px; }
         
         /* Animasi Bunga Jatuh */
-        .falling-item { position: absolute; top: -20px; font-size: 24px; animation: fall linear infinite; z-index: 1; pointer-events: none; }
+        .flower { position: absolute; top: -20px; font-size: 20px; animation: fall linear infinite; z-index: 1; }
         @keyframes fall { to { transform: translateY(100vh); } }
     </style>
 </head>
 <body>
 
     <div id="page1" class="page">
-        <h1>Najwa, I really enjoy talking to you. Would you let me take you out on a date?</h1>
+        <h1>Najwa, I really enjoy talking to you. Would you let me take you out on a date? 🌹</h1>
         <div class="btn-container">
-            <button id="yesBtn" onclick="nextPage(2)">Yes</button>
+            <button id="yesBtn" onclick="nextPage(2)">Yes ✨</button>
             <button id="noBtn" onmouseover="lari()" ontouchstart="lari(event)">No</button>
         </div>
     </div>
 
     <div id="page2" class="page hidden">
         <div class="card">
-            <h1>So... when are you free? Plz pick sabtu ni 👉👈</h1>
-            <label>Pick a Date</label>
+            <h1>So... when are you free? Plz pick sabtu 👉👈</h1>
+            <label>Pick a Date ✨</label>
             <input type="date" id="dateInput" value="2026-07-04" min="2026-07-04">
-            <label>What Time?</label>
+            <label>What Time? 😉</label>
             <select id="timeInput">
                 <option value="" disabled selected>Pilih waktu...</option>
                 <option value="7:00 PM">7:00 PM</option>
                 <option value="8:00 PM">8:00 PM</option>
                 <option value="9:00 PM">9:00 PM</option>
             </select>
-            <button id="submitBtn" onclick="nextPage(3)" style="width: 100%;">Lock It In Cutie</button>
+            <button id="submitBtn" onclick="nextPage(3)" style="width: 100%;">Lock It In Cutie 📌</button>
         </div>
     </div>
 
     <div id="page3" class="page hidden">
-        <h1 style="color: #d63384;">Jangan last2 minit cancel tau</h1>
+        <h1 style="color: #d63384;">Jangan last2 minit cancel tau 🥺</h1>
         <button id="okBtn" onclick="hantarWhatsApp()">okiesss</button>
     </div>
 
@@ -66,25 +66,25 @@
             if (n === 3 && document.getElementById('timeInput').value === "") { alert("Pilih waktu dulu!"); return; }
             document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
             document.getElementById('page' + n).classList.remove('hidden');
-            if (n === 3) startFalling('🌸', 150);
+            if (n === 3) startFlowers();
         }
 
-        function startFalling(items, speed) {
+        function startFlowers() {
             setInterval(() => {
                 const f = document.createElement('div');
-                f.innerHTML = items.charAt(Math.floor(Math.random() * items.length));
-                f.className = 'falling-item';
+                f.innerHTML = '🌸';
+                f.className = 'flower';
                 f.style.left = Math.random() * 100 + 'vw';
                 f.style.animationDuration = Math.random() * 3 + 2 + 's';
                 document.body.appendChild(f);
                 setTimeout(() => f.remove(), 5000);
-            }, speed);
+            }, 300);
         }
 
         function hantarWhatsApp() {
             const tarikh = document.getElementById('dateInput').value;
             const masa = document.getElementById('timeInput').value;
-            const ayat = `I say YES!❤️%0A%0ATarikh: ${tarikh}%0AMasa: ${masa}%0A%0ASee you there!`;
+            const ayat = `I say YES! <3%0A%0ATarikh: ${tarikh}%0AMasa: ${masa}%0A%0ASee you there!`;
             window.location.href = `https://wa.me/601112427146?text=${ayat}`;
         }
     </script>

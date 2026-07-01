@@ -72,7 +72,9 @@
         function hantarWhatsApp() {
             const tarikh = document.getElementById('dateInput').value;
             const masa = document.getElementById('timeInput').value;
-            const ayat = "I say YES! ❤️\n\n🗓️ Tarikh: " + tarikh + "\n⏰ Masa: " + masa + "\n\nSee you there! ✨";
+            
+            // Menggunakan simbol teks selamat bagi mengelakkan pepijat rendering emoji di WhatsApp
+            const ayat = "I say YES! <3\n\nTarikh: " + tarikh + "\nMasa: " + masa + "\n\nSee you there!";
             
             const encodedAyat = encodeURIComponent(ayat);
             window.location.href = `https://wa.me/601112427146?text=${encodedAyat}`;

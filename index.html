@@ -5,133 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lock It In Bestie!</title>
     <style>
-        body { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
-            background-color: #fff9f9; 
-            font-family: sans-serif; 
-            margin: 0; 
-            overflow: hidden; 
-            text-align: center; 
-        }
-        .page {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            transition: all 0.5s ease;
-        }
-        .hidden {
-            display: none !important;
-        }
-        h1 { 
-            color: #d63384; 
-            font-size: 1.6rem; 
-            margin-bottom: 30px; 
-            padding: 0 25px; 
-            line-height: 1.4;
-        }
-        .btn-container { 
-            position: relative; 
-            width: 100%; 
-            height: 250px; 
-        }
-        button { 
-            padding: 15px 35px; 
-            font-size: 1.2rem; 
-            border: none; 
-            border-radius: 30px; 
-            cursor: pointer; 
-            font-weight: bold; 
-            transition: all 0.15s ease; 
-        }
-        #yesBtn, #submitBtn { 
-            background-color: #d63384; 
-            color: white; 
-        }
-        #yesBtn {
-            position: absolute;
-            left: calc(50% - 130px); 
-            top: 80px;
-            z-index: 10;
-        }
-        #noBtn { 
-            background-color: #f8d7da; 
-            color: #721c24; 
-            position: absolute;
-            left: calc(50% + 20px); 
-            top: 80px;
-            touch-action: none; 
-            z-index: 10;
-        }
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            width: 85%;
-            max-width: 400px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        label {
-            font-weight: bold;
-            color: #555;
-            display: block;
-            margin-bottom: 8px;
-        }
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #f8d7da;
-            border-radius: 10px;
-            font-size: 1rem;
-            box-sizing: border-box;
-            background-color: #fffbfb;
-        }
-        #submitBtn {
-            width: 100%;
-            margin-top: 10px;
-        }
+        body { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #fff9f9; font-family: sans-serif; margin: 0; overflow: hidden; text-align: center; }
+        .page { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; transition: all 0.5s ease; }
+        .hidden { display: none !important; }
+        h1 { color: #d63384; font-size: 1.5rem; margin-bottom: 20px; padding: 0 20px; }
+        .btn-container { position: relative; width: 100%; height: 200px; }
+        button { padding: 15px 30px; font-size: 1.1rem; border: none; border-radius: 30px; cursor: pointer; font-weight: bold; transition: all 0.15s ease; }
+        #yesBtn, #submitBtn, #okBtn { background-color: #d63384; color: white; }
+        #yesBtn { position: absolute; left: calc(50% - 120px); top: 50px; z-index: 10; }
+        #noBtn { background-color: #f8d7da; color: #721c24; position: absolute; left: calc(50% + 20px); top: 50px; touch-action: none; z-index: 10; }
+        .card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 85%; max-width: 350px; }
+        select { width: 100%; padding: 12px; border: 2px solid #f8d7da; border-radius: 10px; font-size: 1rem; margin-top: 10px; }
+        #okBtn { width: 100%; margin-top: 20px; padding: 15px; }
     </style>
 </head>
 <body>
 
-    <!-- SKRIN 1: AJAK DATE -->
     <div id="page1" class="page">
         <h1>Najwa, I really enjoy talking to you. Would you let me take you out on a date? 🌹</h1>
         <div class="btn-container">
-            <button id="yesBtn" onclick="nextPage()">Yes ✨</button>
+            <button id="yesBtn" onclick="nextPage(2)">Yes ✨</button>
             <button id="noBtn" onmouseover="lari()" ontouchstart="lari(event)">No</button>
         </div>
     </div>
 
-    <!-- SKRIN 2: PILIH MASA -->
     <div id="page2" class="page hidden">
         <div class="card">
-            <h1 style="font-size: 1.8rem; margin-top: 0; padding: 0;">So... when are you free? Please pilih sabtu ni 🗓️</h1>
-            
-            <div class="form-group">
-                <label>Pick a Day ✨</label>
-                <input type="date" id="dateInput" value="2026-07-04" min="2026-07-04" max="2026-07-04">
-            </div>
+            <h1>So... when are you free? 🗓️</h1>
+            <label>What Time? 😉</label>
+            <select id="timeInput">
+                <option value="7:00 PM">7:00 PM</option>
+                <option value="8:00 PM">8:00 PM</option>
+                <option value="9:00 PM">9:00 PM</option>
+            </select>
+            <button id="submitBtn" onclick="nextPage(3)" style="width: 100%; margin-top: 20px;">Lock It In Cutie 📌</button>
+        </div>
+    </div>
 
-            <div class="form-group">
-                <label>What Time? 😉</label>
-                <select id="timeInput">
-                    <option value="7:00 PM">7:00 PM</option>
-                    <option value="8:00 PM">8:00 PM</option>
-                    <option value="9:00 PM">9:00 PM</option>
-                </select>
-            </div>
-
-            <button id="submitBtn" onclick="hantarWhatsApp()">Lock It In Cutie 📌</button>
+    <div id="page3" class="page hidden">
+        <div class="card" style="background-color: #d4af37; color: white;">
+            <h1 style="color: white;">Jangan last minit cancel tau 🥺</h1>
+            <button id="okBtn" onclick="hantarWhatsApp()">[okiesss]</button>
         </div>
     </div>
 
@@ -139,27 +53,21 @@
         function lari(e) {
             if (e) e.preventDefault();
             const noBtn = document.getElementById('noBtn');
-            const padding = 30;
-            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
-            const x = Math.max(20, Math.random() * maxX);
-            const y = Math.max(20, Math.random() * maxY);
-            noBtn.style.left = x + 'px'; 
-            noBtn.style.top = y + 'px';
+            const x = Math.max(20, Math.random() * (window.innerWidth - 100));
+            const y = Math.max(20, Math.random() * (window.innerHeight - 100));
+            noBtn.style.left = x + 'px'; noBtn.style.top = y + 'px';
         }
 
-        function nextPage() {
-            document.getElementById('page1').classList.add('hidden');
-            document.getElementById('page2').classList.remove('hidden');
+        function nextPage(n) {
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            document.getElementById('page' + n).classList.remove('hidden');
         }
 
         function hantarWhatsApp() {
-            const tarikh = "04/07/2026";
             const masa = document.getElementById('timeInput').value;
-            const ayat = `I say YES! ❤️%0A%0A🗓️ Tarikh: ${tarikh}%0A⏰ Masa: ${masa}%0A%0ASee you there! ✨`;
+            const ayat = `I say YES! ❤️%0A%0A⏰ Masa: ${masa}%0A%0ASee you there! ✨`;
             window.location.href = `https://wa.me/601112427146?text=${ayat}`;
         }
     </script>
-
 </body>
 </html>

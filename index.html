@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ada Soalan Kejap... 🌹</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #ffe6e6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    h1 { color: #ff4d4d; font-size: 24px; margin-bottom: 20px; padding: 0 10px; }
+    .buttons { display: flex; gap: 20px; align-items: center; justify-content: center; flex-direction: column; }
+    button {
+      padding: 12px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 200px;
+    }
+    #yesBtn { background-color: #ff4d4d; color: white; font-weight: bold; }
+    #noBtn { background-color: #ccc; color: #333; }
+    .gif { font-size: 60px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <div class="gif">🌹✨</div>
+  <h1 id="question">Awak free tak 4/7/2026 ni? Jom lepak! 🚀</h1>
+  
+  <div class="buttons">
+    <button id="yesBtn" onclick="tandaSetuju()">Mesti lah nak! 😍</button>
+    <button id="noBtn" onclick="merajuk()">Tak nak 😜</button>
+  </div>
+
+  <script>
+    let yesSize = 18;
+    function merajuk() {
+      alert("Eh mana boleh tak nak! Cuba tekan butang merah tu balik 😜");
+      yesSize += 10;
+      document.getElementById('yesBtn').style.fontSize = yesSize + 'px';
+      document.getElementById('yesBtn').style.width = (200 + yesSize*2) + 'px';
+    }
+    function tandaSetuju() {
+      document.getElementById('question').innerHTML = "Yeayyy! Nanti kita set masa okay? Jumpa 4/7/2026! ❤️🌹";
+      document.querySelector('.buttons').style.display = 'none';
+      document.querySelector('.gif').innerHTML = "🥰🎉";
+    }
+  </script>
+</body>
+</html>
